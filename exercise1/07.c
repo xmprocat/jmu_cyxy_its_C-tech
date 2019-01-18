@@ -1,36 +1,39 @@
 #include <stdio.h>
 /*
-ÊäÈëÄ³ÄêÄ³ÔÂÄ³ÈÕ£¬ÅÐ¶ÏÕâÒ»ÌìÊÇÕâÒ»ÄêµÄµÚ¼¸Ìì£¿
-BY£ºÀÏÃ¨
+è¾“å…¥æŸå¹´æŸæœˆæŸæ—¥ï¼Œåˆ¤æ–­è¿™ä¸€å¤©æ˜¯è¿™ä¸€å¹´çš„ç¬¬å‡ å¤©ï¼Ÿ
+BYï¼šè€çŒ«
 */
 int leap_year(int yr);
 int month_day(int m,int y);
 int _count_month_day_(int mo,int ye);
+int fuck_day(int m,int y,int day);
 int main() {
 
 int year,month,day;
 
-while (1) { //¼òµ¥µÄÊäÈëÂß¼­ÅÐ¶Ï
-    printf("ÇëÊäÈëÄê£¬ÒÔ»Ø³µ½áÊø£º\n");
+while (1) { //ç®€å•çš„è¾“å…¥é€»è¾‘åˆ¤æ–­
+    printf("è¯·è¾“å…¥å¹´ï¼Œä»¥å›žè½¦ç»“æŸï¼š\n");
     scanf("%d",&year);
     fflush(stdin);
-    printf("ÇëÊäÈëÔÂ£¬ÒÔ»Ø³µ½áÊø£º\n");
+    printf("è¯·è¾“å…¥æœˆï¼Œä»¥å›žè½¦ç»“æŸï¼š\n");
     scanf("%d",&month);
     fflush(stdin);
-    printf("ÇëÊäÈëÈÕ£¬ÒÔ»Ø³µ½áÊø£º\n");
+    printf("è¯·è¾“å…¥æ—¥ï¼Œä»¥å›žè½¦ç»“æŸï¼š\n");
     scanf("%d",&day);
     fflush(stdin);
     if(year > 0 && month > 0 && day >0 && day <= 31 && month <=12) {
-        break;
+		break;
     } else
     {
-        printf("ÊäÈë´íÎó£¡£¡£¡\n");
+        printf("è¾“å…¥é”™è¯¯ï¼ï¼ï¼\n");
     }
 }
 //system("cls");
-printf("\n%dÄê%dÔÂ%dÈÕ",year,month,day);
-printf("ÊÇÕâÄêµÄµÚ%dÌì¡£\n",_count_month_day_(month,year) + day);
-return 0;
+
+if(fuck_day(month,year,day)) {goto out;}
+printf("\n%då¹´%dæœˆ%dæ—¥",year,month,day);
+printf("æ˜¯è¿™å¹´çš„ç¬¬%då¤©ã€‚\n",_count_month_day_(month,year) + day);
+out:return 0;
 }
 
 int leap_year(int yr) {
@@ -92,4 +95,48 @@ int _count_month_day_(int mo,int ye) {
         m_day += month_day(i,ye);
     }
 return m_day;
+}
+int fuck_day(int m,int y,int day) {
+    int d;
+    int ex =0;
+    switch(m){
+    case 1 :
+        if(day>31){ex=1;};
+    break;
+    case 2 :
+        if(day>leap_year(y)){ex=1;};
+    break;
+    case 3 :
+        if(day>31){ex=1;};
+    break;
+    case 4 :
+        if(day>30){ex=1;};
+    break;
+    case 5 :
+        if(day>31){ex=1;};
+    break;
+    case 6 :
+        if(day>30){ex=1;};
+    break;
+    case 7 :
+        if(day>31){ex=1;};
+    break;
+    case 8 :
+        if(day>31){ex=1;};
+    break;
+    case 9 :
+        if(day>30){ex=1;};
+    break;
+    case 10 :
+        if(day>31){ex=1;};
+    break;
+    case 11 :
+        if(day>30){ex=1;};
+    break;
+    case 12 :
+        if(day>31){ex=1;};
+    break;
+
+}
+    return ex;
 }
