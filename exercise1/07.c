@@ -36,7 +36,7 @@ while (1) { //简单的输入逻辑判断
 //system("cls");
 printf("\n%d年%d月%d日",year,month,day);
 printf("是这年的第%d天。\n",_count_month_day_(month,year) + day);
-out:return 0;
+return 0;
 }
 
 int leap_year(int yr) {
