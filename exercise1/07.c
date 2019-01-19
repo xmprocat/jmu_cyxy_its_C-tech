@@ -6,10 +6,9 @@ BY：老猫
 int leap_year(int yr);
 int month_day(int m,int y);
 int _count_month_day_(int mo,int ye);
-int fuck_day(int m,int y,int day);
 int main() {
 
-int year,month,day;
+int year,month,day,fackday;
 
 while (1) { //简单的输入逻辑判断
     printf("请输入年，以回车结束：\n");
@@ -21,16 +20,20 @@ while (1) { //简单的输入逻辑判断
     printf("请输入日，以回车结束：\n");
     scanf("%d",&day);
     fflush(stdin);
+    fackday = 30 + (month + (month > 7)) % 2 - (month == 2) * (2 - ((!(year % 4) && year % 100) || !(year % 400)));
     if(year > 0 && month > 0 && day >0 && day <= 31 && month <=12) {
-		break;
+            if(day<=fackday) {
+                break;
+            } else {
+                printf("输入错误！！！\n");
+                continue;}
+
     } else
     {
         printf("输入错误！！！\n");
     }
 }
 //system("cls");
-
-if(fuck_day(month,year,day)) {goto out;}
 printf("\n%d年%d月%d日",year,month,day);
 printf("是这年的第%d天。\n",_count_month_day_(month,year) + day);
 out:return 0;
@@ -95,48 +98,4 @@ int _count_month_day_(int mo,int ye) {
         m_day += month_day(i,ye);
     }
 return m_day;
-}
-int fuck_day(int m,int y,int day) {
-    int d;
-    int ex =0;
-    switch(m){
-    case 1 :
-        if(day>31){ex=1;};
-    break;
-    case 2 :
-        if(day>leap_year(y)){ex=1;};
-    break;
-    case 3 :
-        if(day>31){ex=1;};
-    break;
-    case 4 :
-        if(day>30){ex=1;};
-    break;
-    case 5 :
-        if(day>31){ex=1;};
-    break;
-    case 6 :
-        if(day>30){ex=1;};
-    break;
-    case 7 :
-        if(day>31){ex=1;};
-    break;
-    case 8 :
-        if(day>31){ex=1;};
-    break;
-    case 9 :
-        if(day>30){ex=1;};
-    break;
-    case 10 :
-        if(day>31){ex=1;};
-    break;
-    case 11 :
-        if(day>30){ex=1;};
-    break;
-    case 12 :
-        if(day>31){ex=1;};
-    break;
-
-}
-    return ex;
 }
